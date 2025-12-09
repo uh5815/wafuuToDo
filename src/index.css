@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&display=swap');
+
+:root {
+  /* Wafuu Color Palette */
+  --color-bg: #fcfaf2;
+  /* Gofun-iro (Washi white) */
+  --color-text: #2b2b2b;
+  /* Sumi-iro (Ink black) */
+  --color-primary: #2e3b4e;
+  /* Kachi-iro (Dark indigo) */
+  --color-accent: #c74738;
+  /* Shu-iro (Vermilion) */
+  --color-accent-hover: #a6392c;
+  --color-border: #dcdcdc;
+  --color-paper: #ffffff;
+
+  /* Spacing & Sizes */
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --radius: 4px;
+  /* Slightly rounded, but boxy for traditional feel */
+
+  /* Typography */
+  --font-main: 'Noto Serif JP', serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  background-image:
+    radial-gradient(#e6e6e6 1px, transparent 1px);
+  background-size: 20px 20px;
+  /* Subtle dot pattern mimicking paper texture */
+}
+
+#root {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Wafuu Card Style */
+.wafuu-card {
+  background-color: var(--color-paper);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-lg);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.05);
+  /* Soft, offset shadow */
+  position: relative;
+}
+
+.wafuu-card::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid var(--color-border);
+  z-index: -1;
+}
+
+h1.title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-lg);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border-bottom: 2px solid var(--color-accent);
+  display: inline-block;
+  padding-bottom: var(--spacing-sm);
+  align-self: center;
+}
+
+/* Input Styles */
+.input-group {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-primary);
+  background: transparent;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.3s;
+}
+
+input[type="text"]:focus {
+  box-shadow: 2px 2px 0px var(--color-primary);
+}
+
+button.btn-add {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  padding: 0 var(--spacing-lg);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+button.btn-add:active {
+  transform: translate(2px, 2px);
+}
+
+/* List Styles */
+ul.todo-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+li.todo-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.2s;
+}
+
+li.todo-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+li.todo-item.completed span {
+  text-decoration: line-through;
+  color: #999;
+  opacity: 0.7;
+}
+
+/* Checkbox (Custom Wafuu Checkbox) */
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 24px;
+  /* Adjust height to match */
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: -12px;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  border: 2px solid var(--color-primary);
+  background-color: transparent;
+  border-radius: 50%;
+  /* Circle like a stamp */
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input~.checkmark {
+  background-color: #eee;
+}
+
+/* When the checkbox is checked, add a red stamp color */
+.checkbox-container input:checked~.checkmark {
+  background-color: transparent;
+  /* Keep transparent, fill with symbol */
+  border-color: var(--color-accent);
+}
+
+/* Create the checkmark/stamp indicator (hidden when not checked) */
+.checkmark:after {
+  content: "済";
+  /* 'Sumi' - Done/Completed kanji */
+  position: absolute;
+  display: none;
+  color: var(--color-accent);
+  font-size: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked~.checkmark:after {
+  display: block;
+}
+
+.delete-btn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.2s;
+}
+
+.delete-btn:hover {
+  color: var(--color-accent);
+}
+
+/* Samurai Slash Animation */
+@keyframes slash {
+  0% {
+    width: 0;
+    opacity: 1;
+    transform: rotate(-10deg) translateX(-10px);
+  }
+
+  100% {
+    width: 120%;
+    opacity: 0;
+    transform: rotate(-10deg) translateX(10px);
+  }
+}
+
+.flash-slash::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  height: 2px;
+  background-color: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent);
+  transform: rotate(-10deg);
+  animation: slash 0.4s ease-out forwards;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Shake effect for impact */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(2px);
+  }
+
+  50% {
+    transform: translateX(-2px);
+  }
+
+  75% {
+    transform: translateX(1px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+/* Samurai Character Animation - Static Frame Display */
+.samurai-effect {
+  position: absolute;
+  right: 0;
+  bottom: -40px;
+  height: 80px;
+  /* Adjusted magnitude for pixel art */
+  width: auto;
+  pointer-events: none;
+  z-index: 20;
+  /* No slide animation, just appear */
+  image-rendering: pixelated;
+  /* Essential for pixel art */
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
+}
