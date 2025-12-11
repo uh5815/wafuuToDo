@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div className="wafuu-card">
-      <h1 className="title">和風 ToDo</h1>
+      <h1 className="title">御用覚</h1>
       <TodoInput onAdd={addTodo} />
       <TodoList
         todos={todos}

@@ -28,13 +28,15 @@
 body {
   margin: 0;
   font-family: var(--font-main);
-  background-color: var(--color-bg);
+  background-color: #fcfaf2;
   color: var(--color-text);
   line-height: 1.6;
-  background-image:
-    radial-gradient(#e6e6e6 1px, transparent 1px);
-  background-size: 20px 20px;
-  /* Subtle dot pattern mimicking paper texture */
+  background-image: url('./assets/great_wave.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* Fixed background for parallax-like feel */
 }
 
 #root {

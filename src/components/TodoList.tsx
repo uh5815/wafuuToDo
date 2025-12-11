@@ -11,7 +11,7 @@ export default function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
     if (todos.length === 0) {
         return (
             <div style={{ textAlign: 'center', color: '#999', padding: '2rem' }}>
-                <p>タスクはありません。<br />"Nothing remains."</p>
+                <p>タスクはありません。<br />"無."</p>
             </div>
         );
     }
