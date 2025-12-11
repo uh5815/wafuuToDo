@@ -2,12 +2,28 @@ import { useState, useEffect } from 'react';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
 import { Todo } from './types';
+import frame1 from './assets/samurai_frame1.png';
+import frame2 from './assets/samurai_frame2.png';
+import frame3 from './assets/samurai_frame3.png';
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>(() => {
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  // Preload images
+  useEffect(() => {
+    const images = [frame1, frame2, frame3];
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+  useEffect(() => {
     const saved = localStorage.getItem('wafuu-todos');
-    return saved ? JSON.parse(saved) : [];
-  });
+    if (saved) {
+      setTodos(JSON.parse(saved));
+    }
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('wafuu-todos', JSON.stringify(todos));
